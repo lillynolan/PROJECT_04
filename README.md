@@ -1,7 +1,8 @@
 # PROJECT_04
 
 NAME OF APP: 
-EVENTRY
+
+*EVENTRY*
 
 GOALS: 
 
