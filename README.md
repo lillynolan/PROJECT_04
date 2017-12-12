@@ -8,7 +8,9 @@ NAME OF APP:
 GOALS: 
 
 Functional application with CRUD
+
 Appealing design with fleshed out user stories
+
 Auth
 
 *USERSTORIES:* 
