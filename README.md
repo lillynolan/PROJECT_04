@@ -10,6 +10,9 @@ Appealing design with fleshed out user stories
 Auth
 
 WIREFRAMES:
+
+
+
 ![imageDescrip](https://i.imgur.com/e3Tr92M.jpg)
 ![imageDescrip](https://i.imgur.com/aqrqCBc.jpg)
 
