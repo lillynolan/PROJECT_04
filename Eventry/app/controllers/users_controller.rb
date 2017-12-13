@@ -8,7 +8,10 @@ class UsersController < ApiController
 
   def profile
     user = User.find_by_auth_token!(request.headers[:token])
-    render json: { user: { username: user.username, firstname: user.firstname, lastname: user.lastname } }
+    user_events = Event.where(user_id: user.id)
+    render json: { user: { username: user.username, firstname: user.firstname, lastname: user.lastname },
+    events: user_events,
+     }
   end
 
   private
