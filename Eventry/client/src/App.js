@@ -6,8 +6,8 @@ import Auth from './modules/Auth';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Landing from './components/Landing';
-// import Nav from './components/Nav';
 import AddEvent from './components/AddEvent';
+import UserProfile from './components/AddEvent';
 
 class App extends Component {
   constructor() {
@@ -101,10 +101,15 @@ handleLogout() {
         <Route exact path='/home' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <AddEvent />
+          : <AddEvent handleLogout={this.handleLogout}/>
           )}
         />
-        <button onClick={this.handleLogout}>Logout</button>
+        <Route exact path='/profile' render={() => (
+          !this.state.auth
+          ? <Redirect to='/' />
+          : <UserProfile handleLogout={this.handleLogout}/>
+          )}
+        />
       </div>
       </Router>
     );
