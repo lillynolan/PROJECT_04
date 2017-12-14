@@ -6,6 +6,19 @@ class EventsController < ApiController
     render json: { events: events }
   end
 
+  def create
+    event = Event.new(event_params)
+    event.user_id = current_user.id
+    if event.save
+      render json: {
+        message: 'ok',
+        event: event,
+      }
+    else
+      render json: {message: 'No event added'}
+    end
+  end
+
   private
   def event_params
     params.require(:event).permit(:name, :url, :date, :localtime, :city, :state, :stateCode,
