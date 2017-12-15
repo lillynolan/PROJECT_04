@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Landing from './components/Landing';
 import AddEvent from './components/AddEvent';
-import UserProfile from './components/AddEvent';
+import UserProfile from './components/UserProfile';
 
 class App extends Component {
   constructor() {
