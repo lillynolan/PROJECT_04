@@ -19,6 +19,10 @@ class EventsController < ApiController
     end
   end
 
+  def destroy
+    Event.find(params[:id]).destroy
+  end
+
   private
   def event_params
     params.require(:event).permit(:name, :url, :date, :localtime, :city, :state, :stateCode,
