@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Nav from './Nav'
+import Moment from 'react-moment';
 
 
 class AddEvent extends Component {
@@ -36,7 +37,7 @@ searchEvent (e) {
           name: event.name,
           url: event.images[0].url,
           date: event.dates.start.localDate,
-          time: event.dates.start.localTime,
+          localtime: event.dates.start.localTime,
           city: event._embedded.venues[0].city.name,
           state: (typeof event._embedded.venues[0].state != "undefined")? event._embedded.venues[0].state.name : " ",
           stateCode: (typeof event._embedded.venues[0].state != "undefined")? event._embedded.venues[0].state.stateCode : " ",
@@ -74,7 +75,7 @@ postEvent(index) {
         name: this.state.searchedEvents[index].name,
         url: this.state.searchedEvents[index].url,
         date: this.state.searchedEvents[index].date,
-        time: this.state.searchedEvents[index].time,
+        localtime: this.state.searchedEvents[index].time,
         city: this.state.searchedEvents[index].city,
         state: this.state.searchedEvents[index].state,
         stateCode: this.state.searchedEvents[index].stateCode,
@@ -94,6 +95,19 @@ postEvent(index) {
         console.log(err);
       })
     }
+
+// singleEvent(e) {
+//   fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${e.target.city.value}&apikey=5OXqsHRBAmlbfo0yWC7GGGbLA4ZfqJio`,
+//     method: 'GET',
+//     headers: {},
+//   })
+//   .then(res => res.json())
+//   .then(res => {
+//     this.setState({
+
+//     })
+//   })
+// }
 
 render() {
   if (!this.state.dataLoaded) {
@@ -126,14 +140,11 @@ render() {
             <div className="eventresults" >
             <h2>{this.state.searchedEvents[0].city}'s Upcoming Events</h2>
             {this.state.searchedEvents.map((event, index) => {
-              let date = new Date(event.date)
             return (
             <div className="results" key={index}>
               <h2 className="result">{event.name}</h2>
               <p className="result">{event.venue}</p>
-              <p className="result">{date.toDateString()}</p>
-              <p className="result">{event.date}</p>
-              <p className="result">{event.time}</p>
+              <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.time}</Moment></p>
               <p className="result">{event.city} {event.stateCode}</p>
               <p className="result">{event.classification}: {event.genre}</p>
               <button className="resultbutton" onClick={() => this.postEvent(index)}>Add Event</button>
@@ -157,3 +168,4 @@ export default AddEvent;
 //references:
 //https://www.w3schools.com/jsref/jsref_obj_date.asp
 //https://stackoverflow.com/questions/4186906/check-if-object-exists-in-javascript
+//referenced moment docs for time and date https://momentjs.com/

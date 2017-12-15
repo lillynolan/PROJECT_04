@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Nav from './Nav'
+import Moment from 'react-moment';
 
 
 class UserProfile extends Component {
@@ -64,12 +65,14 @@ render() {
       <div className="userresults">
           <h1>My Events</h1>
           {this.state.myEventList.map((event, index) => {
+            {/*let time = time.new(event.localtime)*/}
         return(
             <div className="userevents" key={index}>
              <h2 className="result">{event.name}</h2>
               <p className="result">{event.venue}</p>
-              <p className="result">{event.date}</p>
-              <p className="result">{event.time}</p>
+              <p className="result"><Moment format="MMMM DD YYYY">{event.date}</Moment></p>
+             {/* <p className="result">{time.strftime("%I:%M%p")}</p>*/}
+              <p className="result">{event.localtime}</p>
               <p className="result">{event.city} {event.stateCode}</p>
               <p className="result">{event.classification}: {event.genre}</p>
               <button onClick={() => {this.deleteEvent(event.id)}}>Delete</button>

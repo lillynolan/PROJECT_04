@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Moment from 'react-moment';
 
 import Auth from './modules/Auth';
 import LoginForm from './components/LoginForm';
