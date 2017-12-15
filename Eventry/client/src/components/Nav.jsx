@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 const Nav = (props) => {
   return (
     <div className="navcontainer">
-      <nav>
         <ul>
-          <li><Link to="/profile">My Events</Link></li>
-          <li><button onClick={props.handleLogout}>Logout</button></li>
+          <button><Link to="/profile">My Events</Link></button>
+          <button><Link to="/home">Add Event</Link></button>
+          <button onClick={props.handleLogout}>Logout</button>
         </ul>
-      </nav>
     </div>
     )
 }
