@@ -46,25 +46,51 @@ border-spacing: 0;
 
 /*css*/
 
+/*colors: #D3E8E1 , #9C9CDD, #776EA7 , #ABCEE2, #D1E9E3*/
+
 body {
 font-family: 'Fjalla One', sans-serif;
 font-weight: bold;
 text-align: center;
 }
 
-
 .navcontainer {
-  background: #C0C2CE;
-  color: white;
+  background: #D1E9E3;
   display: flex;
-  box-shadow: 2px 3px 3px black;
+  box-shadow: 3px 5px 5px #055A5B;
+  height: 15vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-.navcontainer ul li {
-  flex-direction: column;
+.navcontainer ul {
+  display: flex;
   margin: auto;
-  font-color: white;
+  width: 66%;
+}
+
+.navcontainer a, .navcontainer button {
   text-decoration: none;
+  color: #055A5B;
+  text-transform: uppercase;
+  text-shadow: 1px 2px 2px white;
+  font-size: 20px;
+  letter-spacing: .05em;
+  padding: 0;
+  margin: auto;
+}
+
+.navcontainer button {
+  border-style: none;
+  border: none;
+  background: #D1E9E3;
+  font-weight: bold;
+  display: inline;
+}
+
+.navcontainer button:hover {
+  cursor: pointer;
 }
 
 .searchcontainer {
@@ -103,7 +129,14 @@ text-align: center;
   border: 1px solid black;
 }
 
-.result {
+.userresults h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.userevents {
+  padding: 10px;
 }
 
 .result img {
