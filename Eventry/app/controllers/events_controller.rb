@@ -20,7 +20,7 @@ class EventsController < ApiController
   end
 
   def destroy
-    Event.find(params[:id]).destroy
+    Event.find(params[:id]).destroy!
   end
 
   private
