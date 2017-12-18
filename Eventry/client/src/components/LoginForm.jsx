@@ -22,6 +22,7 @@ handleInputChange(e) {
 render() {
   return (
     <div className="loginform">
+      <h1>Eventry</h1>
       <form onSubmit={(e) => this.props.handleLogin(e, this.state)}>
         <input type="text" name="username"
         value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />

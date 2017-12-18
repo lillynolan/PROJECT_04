@@ -23,6 +23,7 @@ handleInputChange(e) {
 render() {
   return (
     <div className="registerform">
+      <h1>Eventry</h1>
       <form onSubmit={(e) => this.props.handleRegister(e, this.state)}>
         <input type="text" name="firstname" value={this.state.firstname}
         placeholder="Firstname" onChange={this.handleInputChange} />
