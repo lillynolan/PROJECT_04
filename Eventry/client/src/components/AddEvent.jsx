@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Auth from '../modules/Auth';
 import Nav from './Nav'
 import Moment from 'react-moment';
+import FontAwesome from 'react-fontawesome';
 
 
 class AddEvent extends Component {
@@ -168,9 +169,6 @@ postEvent(index) {
     }
 
 
-
-
-
 render() {
   if (!this.state.dataLoaded && !this.state.singleLoaded) {
   return (
@@ -181,7 +179,7 @@ render() {
         <div className="searchbar">
           <form className="input" onSubmit={this.searchEvent}>
             <input type="text" name="city" placeholder="Search a City"/>
-            <input type="submit" value="search"/>
+            <button><i class="fa fa-search" type="submit" value="cities"></i></button>
           </form>
         </div>
       </div>
@@ -192,17 +190,18 @@ render() {
         <div className="singleeventpage">
           <Nav handleLogout={this.props.handleLogout} />
             <div className="singleevent">
+            <button><i class="fa fa-close" onClick={this.backtoResults} value="close"></i></button>
               <h3 className="result">Upcoming event in {this.state.singleEvent._embedded.venues[0].city.name}</h3>
-              <h4 className="result">{this.state.singleEvent.name}</h4>
+              <h4 clas sName="result">{this.state.singleEvent.name}</h4>
               <img className="result" src={this.state.singleEvent.images[0].url}/>
               <h4 className="result"><Moment format="MMMM DD YYYY, h:mm a">{this.state.singleEvent.dates.start.localDate + 'T' + this.state.singleEvent.dates.start.localTime}</Moment></h4>
               <p className="result">Where: {this.state.singleEvent._embedded.venues[0].name}</p>
               <p className="result">{this.state.singleEvent._embedded.venues[0].address.line1}</p>
               <p className="result">{this.state.singleEvent._embedded.venues[0].state.name} {this.state.singleEvent._embedded.venues[0].state.stateCode}</p>
               <p className="result">{this.state.singleEvent.classifications[0].segment.name}</p>
-              <a href={this.state.singleEvent.url}>Buy Tickets</a>
-              <button className="resultbutton" onClick={() => this.postSingleEvent(this.state.singleEvent.id)}>Add Event</button>
+              {/*<a href={this.state.singleEvent.url}>Buy Tickets on TicketMaser</a>*/}
               <button className="resultbutton" onClick={this.backtoResults}>Back to {this.state.singleEvent._embedded.venues[0].city.name} Results</button>
+              <button className="resultbutton" onClick={() => this.postSingleEvent(this.state.singleEvent.id)}>(+)Add Event</button>
             </div>
         </div>
         )
@@ -216,7 +215,7 @@ render() {
             <div className="searchbar">
               <form className="input" onSubmit={this.searchEvent}>
                 <input type="text" name="city" placeholder="Search a City"/>
-                <input type="submit" value="search"/>
+                <button><i class="fa fa-search" type="submit" value="cities"></i></button>
               </form>
             </div>
             <div className="eventresults" >
@@ -229,8 +228,8 @@ render() {
                 <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.localtime}</Moment></p>
                 <p className="result">{event.city} {event.stateCode}</p>
                 <p className="result">{event.classification}: {event.genre}</p>
-                <button className="resultbutton" name="id" onClick={() => this.singleEvent(event.id)}>More Info</button>
-                <button className="resultbutton" onClick={() => this.postEvent(index)}>Add Event</button>
+                <button className="resultbutton" name="id" onClick={() => this.singleEvent(event.id)}>(<FontAwesome name='info'/>)More Info</button>
+                <button className="resultbutton" onClick={() => this.postEvent(index)}>(+)Add Event</button>
                 {/*<img className="result" src={event.url}/>*/}
               </div>
             )}
@@ -252,3 +251,4 @@ export default AddEvent;
 //https://www.w3schools.com/jsref/jsref_obj_date.asp
 //https://stackoverflow.com/questions/4186906/check-if-object-exists-in-javascript
 //referenced moment docs for time and date https://momentjs.com/
+//https://stackoverflow.com/questions/46883381/fontawesome-in-search-bar
