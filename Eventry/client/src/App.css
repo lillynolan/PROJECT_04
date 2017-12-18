@@ -114,19 +114,32 @@ text-align: center;
 }
 
 .eventresults {
-  border: 3px solid black;
+  border: 4px solid #055A5B;
   width: 50vw;
-  justify-content: center;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.eventresults h2 {
+  text-transform: uppercase;
+}
+
+.eventresults h3 {
+  text-decoration: underline;
 }
 
 .results {
   width: 50vw;
   height: 50vh;
   text-align: center;
-  flex-direction: row;
+  flex-direction: column;
   line-height: 1.5em;
-  justify-content: center;
-  border: 1px solid black;
+  border: 1px solid #055A5B;
+  box-sizing: border-box;
+  overflow: scroll;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: separate;
 }
 
 .userresults h1 {
@@ -139,6 +152,22 @@ text-align: center;
   padding: 10px;
 }
 
-.result img {
-  width: 50px;
+img.result {
+  width: 30%;
+  border: 3px solid white;
+  margin: 20px;
+  box-shadow: 2px 2px 5px #055A5B;
+}
+
+.singleeventpage h3 {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.singleeventpage h4 {
+  font-size: 25px;
+}
+
+.singleevent p {
+  line-height: 1.5em;
 }
