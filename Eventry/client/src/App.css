@@ -118,6 +118,8 @@ text-align: center;
   width: 50vw;
   margin: auto;
   border-collapse: collapse;
+  font-size: 20px;
+
 }
 
 .eventresults h2 {
@@ -130,7 +132,6 @@ text-align: center;
 
 .results {
   width: 50vw;
-  height: 50vh;
   text-align: center;
   flex-direction: column;
   line-height: 1.5em;
@@ -171,3 +172,87 @@ img.result {
 .singleevent p {
   line-height: 1.5em;
 }
+
+.userresults h1 {
+  font-size: 50px;
+}
+
+.userevents {
+  border: 4px solid #055A5B;
+  border-collapse: collapse;
+  width: 50vw;
+  margin: auto;
+}
+
+.userevents h2 {
+font-size: 40px;
+}
+
+.userevents h3 {
+font-size: 30px;
+}
+
+.userevents button, .eventresults button, .singleevent button, .searchbar button {
+  border: none;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.userevents button:hover, .eventresults button:hover, .singleevent button:hover, .searchbar button:hover {
+  cursor: pointer;
+}
+
+.userevents button {
+  color: red;
+}
+
+.eventresults button, .singleevent button {
+  color: #112378;
+  font-size: 20px;
+}
+
+.userevents input {
+  font-size: 30px;
+}
+
+.singleevent i {
+  color: red;
+  float: right;
+}
+
+
+.searchevent i {
+  font-size: 30px;
+  border: none;
+}
+
+.singleevent {
+  width: 50vw;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.loginregister h1 {
+  display: flex;
+}
+
+.loginregister h1, .loginform h1, .registerform h1 {
+  font-size: 70px;
+  color: #112378;
+  text-shadow: 5px 5px 5px solid black;
+  letter-spacing: 1em;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.loginregister a {
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  padding: 0px 50px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+
