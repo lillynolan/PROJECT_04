@@ -25,7 +25,6 @@ class UserProfile extends Component {
   fetch('/events/')
   .then(res => res.json())
   .then(res => {
-    console.log(res)
     this.setState({
       myEventList: res.events,
       myEventListLoaded: true,
@@ -65,16 +64,19 @@ render() {
       <div className="userresults">
           <h1>My Events</h1>
           {this.state.myEventList.map((event, index) => {
-            {/*let time = time.new(event.localtime)*/}
+            let time = new Date (event.localtime)
         return(
             <div className="userevents" key={index}>
-             <h2 className="result">{event.name}</h2>
+              <h2 className="result">{event.city}</h2>
+              <h3 className="result">{event.name}</h3>
+              <img className="result" src={event.url}/>
               <p className="result">{event.venue}</p>
               <p className="result"><Moment format="MMMM DD YYYY">{event.date}</Moment></p>
-             {/* <p className="result">{time.strftime("%I:%M%p")}</p>*/}
-              <p className="result">{event.localtime}</p>
+              <p className="result">at {time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
+             {/* referenced for converting time and only showing seconds, https://stackoverflow.com/questions/17913681/how-do-i-use-tolocaletimestring-without-displaying-seconds/20430558*/}
               <p className="result">{event.city} {event.stateCode}</p>
               <p className="result">{event.classification}: {event.genre}</p>
+              <button><input type="checkbox"/>Attending</button>
               <button onClick={() => {this.deleteEvent(event.id)}}>Delete</button>
             </div>
         )}
