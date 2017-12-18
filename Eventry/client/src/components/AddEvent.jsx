@@ -8,13 +8,17 @@ class AddEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
+      spaceCity: '',
       dataLoaded: false,
-      events: [],
+      singleEvent: [],
       searchedEvents: null,
+      singleLoaded: false,
     }
     this.searchEvent = this.searchEvent.bind(this);
     this.postEvent = this.postEvent.bind(this);
+    this.singleEvent = this.singleEvent.bind(this);
+    this.backtoResults = this.backtoResults.bind(this);
+    this.postSingleEvent = this.postSingleEvent.bind(this)
   }
 
 
@@ -29,6 +33,7 @@ searchEvent (e) {
   .then(res => {
     console.log(res)
     console.log(res._embedded.events[7])
+    console.log(res._embedded.events[8].id)
     console.log(res._embedded.events[7].classifications[0].genre.name)
     console.log(res._embedded.events[7].classifications[0].segment.name)
     let events = res._embedded.events.map(event => {
@@ -46,6 +51,7 @@ searchEvent (e) {
           address: event._embedded.venues[0].address.line1,
           classification: (typeof event.classifications != "undefined")? event.classifications[0].segment.name : " ",
           genre: (typeof event.classifications != "undefined")? event.classifications[0].genre.name : " ",
+          id: event.id,
         }
         )
         // https://stackoverflow.com/questions/4186906/check-if-object-exists-in-javascript
@@ -55,11 +61,76 @@ searchEvent (e) {
       this.setState({
       dataLoaded: true,
       searchedEvents: events,
+      spaceCity: spaceCity,
       })
   }).then(() => {
     document.querySelector('.input').reset()
+  }).catch(err => {
+        console.log(err);
+      })
+    }
+
+//fetching event by api id for more info button to display more abt the event from api data
+singleEvent(id) {
+  fetch(`https://app.ticketmaster.com/discovery/v2/events.json?id=${id}&apikey=5OXqsHRBAmlbfo0yWC7GGGbLA4ZfqJio`, {
+    method: 'GET',
+    headers: {},
+  })
+  .then(res => res.json())
+  .then(res => {
+    console.log("data", res)
+    this.setState({
+    singleEvent: res._embedded.events[0],
+    singleLoaded: true,
+    dataLoaded: false,
+    })
   })
 }
+
+
+postSingleEvent(id) {
+    console.log(this.state.singleEvent)
+    fetch('/events/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${Auth.getToken()}`,
+        token: Auth.getToken(),
+      },
+      body: JSON.stringify({
+        event: {
+        name: this.state.singleEvent.name,
+        url: this.state.singleEvent.images[0].url,
+        date: this.state.singleEvent.dates.start.localDate,
+        localtime: this.state.singleEvent.dates.start.localTime,
+        city: this.state.singleEvent._embedded.venues[0].city.name,
+        state: this.state.singleEvent._embedded.venues[0].state.name,
+        stateCode: this.state.singleEvent._embedded.venues[0].state.stateCode,
+        country: this.state.singleEvent._embedded.venues[0].state,
+        venue: this.state.singleEvent._embedded.venues[0].name,
+        address: this.state.singleEvent._embedded.venues[0].address.line1,
+        classification: this.state.singleEvent.classifications[0].segment.name,
+        genre: this.state.singleEvent.classifications[0].genre.name,
+        }
+      })
+    }).then(res => res.json())
+        .then(res => {
+          this.setState({
+          shouldFireRedirect: true,
+        })
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+
+backtoResults() {
+    this.setState({
+    singleEvent: null,
+    singleLoaded: false,
+    dataLoaded: true,
+    })
+}
+
 
 postEvent(index) {
     console.log(this.state.searchedEvents[index])
@@ -75,7 +146,7 @@ postEvent(index) {
         name: this.state.searchedEvents[index].name,
         url: this.state.searchedEvents[index].url,
         date: this.state.searchedEvents[index].date,
-        localtime: this.state.searchedEvents[index].time,
+        localtime: this.state.searchedEvents[index].localtime,
         city: this.state.searchedEvents[index].city,
         state: this.state.searchedEvents[index].state,
         stateCode: this.state.searchedEvents[index].stateCode,
@@ -96,21 +167,12 @@ postEvent(index) {
       })
     }
 
-// singleEvent(e) {
-//   fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${e.target.city.value}&apikey=5OXqsHRBAmlbfo0yWC7GGGbLA4ZfqJio`,
-//     method: 'GET',
-//     headers: {},
-//   })
-//   .then(res => res.json())
-//   .then(res => {
-//     this.setState({
 
-//     })
-//   })
-// }
+
+
 
 render() {
-  if (!this.state.dataLoaded) {
+  if (!this.state.dataLoaded && !this.state.singleLoaded) {
   return (
     <div className="searchevent">
     <Nav handleLogout={this.props.handleLogout} />
@@ -125,7 +187,27 @@ render() {
       </div>
     </div>
     )
-    } else {
+    } else if (!this.state.dataLoaded && this.state.singleLoaded) {
+      return (
+        <div className="singleeventpage">
+          <Nav handleLogout={this.props.handleLogout} />
+            <div className="singleevent">
+              <h3 className="result">Upcoming event in {this.state.singleEvent._embedded.venues[0].city.name}</h3>
+              <h4 className="result">{this.state.singleEvent.name}</h4>
+              <img className="result" src={this.state.singleEvent.images[0].url}/>
+              <h4 className="result"><Moment format="MMMM DD YYYY, h:mm a">{this.state.singleEvent.dates.start.localDate + 'T' + this.state.singleEvent.dates.start.localTime}</Moment></h4>
+              <p className="result">Where: {this.state.singleEvent._embedded.venues[0].name}</p>
+              <p className="result">{this.state.singleEvent._embedded.venues[0].address.line1}</p>
+              <p className="result">{this.state.singleEvent._embedded.venues[0].state.name} {this.state.singleEvent._embedded.venues[0].state.stateCode}</p>
+              <p className="result">{this.state.singleEvent.classifications[0].segment.name}</p>
+              <a href={this.state.singleEvent.url}>Buy Tickets</a>
+              <button className="resultbutton" onClick={() => this.postSingleEvent(this.state.singleEvent.id)}>Add Event</button>
+              <button className="resultbutton" onClick={this.backtoResults}>Back to {this.state.singleEvent._embedded.venues[0].city.name} Results</button>
+            </div>
+        </div>
+        )
+    }
+    else {
       return (
     <div className="searchevent">
     <Nav handleLogout={this.props.handleLogout} />
@@ -138,18 +220,19 @@ render() {
               </form>
             </div>
             <div className="eventresults" >
-            <h2>{this.state.searchedEvents[0].city}'s Upcoming Events</h2>
-            {this.state.searchedEvents.map((event, index) => {
-            return (
-            <div className="results" key={index}>
-              <h2 className="result">{event.name}</h2>
-              <p className="result">{event.venue}</p>
-              <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.time}</Moment></p>
-              <p className="result">{event.city} {event.stateCode}</p>
-              <p className="result">{event.classification}: {event.genre}</p>
-              <button className="resultbutton" onClick={() => this.postEvent(index)}>Add Event</button>
-              {/*<img className="result" src={event.url}/>*/}
-            </div>
+              <h2>{this.state.searchedEvents[0].city}'s Upcoming Events</h2>
+              {this.state.searchedEvents.map((event, index) => {
+              return (
+              <div className="results" key={index}>
+                <h3 className="result">{event.name}</h3>
+                <p className="result">{event.venue}</p>
+                <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.localtime}</Moment></p>
+                <p className="result">{event.city} {event.stateCode}</p>
+                <p className="result">{event.classification}: {event.genre}</p>
+                <button className="resultbutton" name="id" onClick={() => this.singleEvent(event.id)}>More Info</button>
+                <button className="resultbutton" onClick={() => this.postEvent(index)}>Add Event</button>
+                {/*<img className="result" src={event.url}/>*/}
+              </div>
             )}
             )}
 
