@@ -2,7 +2,7 @@ class EventsController < ApiController
   before_action :require_login, except: [:index, :show]
 
   def index
-    events = Event.all
+    events = Event.all.where(user_id: current_user.id).order(:date)
     render json: { events: events }
   end
 
@@ -17,6 +17,11 @@ class EventsController < ApiController
     else
       render json: {message: 'No event added'}
     end
+  end
+
+  def show
+    events = Event.find(params[:id])
+    render json: { events: events }
   end
 
   def destroy
