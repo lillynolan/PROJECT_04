@@ -26,14 +26,14 @@ render() {
       <h1>Eventry</h1>
       <form onSubmit={(e) => this.props.handleRegister(e, this.state)}>
         <input type="text" name="firstname" value={this.state.firstname}
-        placeholder="Firstname" onChange={this.handleInputChange} />
+        placeholder="First Name" onChange={this.handleInputChange} />
         <input type="text" name="lastname" value={this.state.lastname}
-        placeholder="Lastname" onChange={this.handleInputChange} />
+        placeholder="Last Name" onChange={this.handleInputChange} />
         <input type="text" name="username" value={this.state.username}
         placeholder="Username" onChange={this.handleInputChange} />
         <input type="password" name="password" value={this.state.password}
         placeholder="Password" onChange={this.handleInputChange} />
-        <input type="submit" value="Register" />
+        <input type="submit" value="REGISTER" />
       </form>
     </div>
     )
