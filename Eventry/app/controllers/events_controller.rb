@@ -6,6 +6,12 @@ class EventsController < ApiController
     render json: { events: events }
   end
 
+   def show
+    events = Event.find(params[:id])
+    render json: { events: events }
+  end
+
+
   def create
     event = Event.new(event_params)
     event.user_id = current_user.id
@@ -17,11 +23,6 @@ class EventsController < ApiController
     else
       render json: {message: 'No event added'}
     end
-  end
-
-  def show
-    events = Event.find(params[:id])
-    render json: { events: events }
   end
 
   def destroy
