@@ -1,5 +1,5 @@
 
-*EVENTRY*
+**EVENTRY**
 
 *Screenshots of Eventry*
 ![imageDescrip](https://i.imgur.com/UL7t8qL.png)
@@ -9,7 +9,7 @@
 ![imageDescrip](https://i.imgur.com/xYyk8Lm.png)
 
 
-Explanations of the technologies used
+**Explanations of the technologies used**<br>
 **Frontend:** HTML, JSX, React <br>
 My FrontEnd is built with React. I utilized HTML for the layout and JSX in order to insert javascript.<br>
 <br>
@@ -22,7 +22,7 @@ Information to my database pulls from the TicketMaster API. My application queri
 <br>
 
 
-*General Approach*
+**General Approach**<br>
 
 <br>In building Eventry, I wanted to capitalize on a trend prevailing with applications on the web today. In today's society, users are drawn to applications that allow them to share their activity and view respective friends activities and opinions. The idea of curating your own world within a application that reflects yourself and any the other users you have chosen to follow. This concept of bringing what you do publicly in the world to the web as a reflective, personal profile is what lead me to want to create Eventry. Eventry is an applicatoin that allows users to add public events occurring in cities around the world, create personal events and add them to a saved event list.<br> 
 
@@ -31,14 +31,14 @@ Information to my database pulls from the TicketMaster API. My application queri
 <br>Overall, I wanted the approach to be straightforward. I wanted users to be able to know what they were coming to use the application for. Many times websites start integrating a variety of features and a place you used to go for one thing now offers a series of functions. I wanted to create Eventry, the place to go to choose and see your events.<br>
 
 
-*Installation instructions*<br>
+**Installation instructions**<br>
 Npm install all dependencies<br>
 foreman start -p 3000 to start<br>
 App requires an API key from Ticketmaster API<br>
 
 
-*USERSTORIES:*<br>
-*MY USER: An every day individual looking to search, create and organize their public and private events*
+**USERSTORIES:**<br><br>
+**MY USER: An every day individual looking to search, create and organize their public and private events**
 
 User logs in or registers on welcome entry page
 
@@ -114,7 +114,7 @@ User clicks Add Event
 Event is added to their Eventry 
 
 
-*WIREFRAMES:*
+**WIREFRAMES:**
 
 
 ![imageDescrip](https://i.imgur.com/U1SBIv3.jpg?1)
@@ -122,10 +122,10 @@ Event is added to their Eventry
 ![imageDescrip](https://i.imgur.com/WhieIzq.jpg)
 
 
-Descriptions of any unsolved problems or major hurdles you had to overcome
+**Descriptions of unsolved problems//Hurdles**
 
-Adding an event from the Create Personal Event page doesnt redirect to profile, it adds successfully<br>
-Displaying time correctly was a big hurdle, in some instances I used Moment to display date and others I used toLocaleTimeString, the issue with toLocaleTimeString is that converts an events time to my current local time<br>
-Input of time on the Create Event Page auto sets to 7:00pm, doesn't let you insert into localtime on event table<br>
+Adding an event from the Create Personal Event page doesnt redirect to profile, it adds successfully<br><br>
+Displaying time correctly was a big hurdle, in some instances I used Moment to display date and others I used toLocaleTimeString, the issue with toLocaleTimeString is that converts an events time to my current local time<br><br>
+Input of time on the Create Event Page auto sets to 7:00pm, doesn't let you insert into localtime on event table<br><br>
 
 
