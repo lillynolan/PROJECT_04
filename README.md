@@ -1,20 +1,44 @@
-# PROJECT_04
-
-NAME OF APP: 
-
 
 *EVENTRY*
 
-GOALS: 
+*Screenshots of Eventry*
+![imageDescrip](https://i.imgur.com/UL7t8qL.png)
+![imageDescrip](https://i.imgur.com/rMzXdSK.png)
+![imageDescrip](https://i.imgur.com/K0t1owc.png)
+![imageDescrip](https://i.imgur.com/epZPssQ.png)
+![imageDescrip](https://i.imgur.com/xYyk8Lm.png)
 
-Functional application with CRUD
 
-Appealing design with fleshed out user stories
+Explanations of the technologies used
+**Frontend:** HTML, JSX, React <br>
+My FrontEnd is built with React. I utilized HTML for the layout and JSX in order to insert javascript.<br>
+<br>
+**Backend:** Rails, ActiveRecord<br>
+The Backend uses Rails API with an ActiveRecord database.
+. <br>
+<br>
+**TICKETMASTER API:** <br>
+Information to my database pulls from the TicketMaster API. My application queries this database by city search and then posts it when the user clicks add event to my local database.
+<br>
 
-Auth
+
+*General Approach*
+
+<br>In building Eventry, I wanted to capitalize on a trend prevailing with applications on the web today. In today's society, users are drawn to applications that allow them to share their activity and view respective friends activities and opinions. The idea of curating your own world within a application that reflects yourself and any the other users you have chosen to follow. This concept of bringing what you do publicly in the world to the web as a reflective, personal profile is what lead me to want to create Eventry. Eventry is an applicatoin that allows users to add public events occurring in cities around the world, create personal events and add them to a saved event list.<br> 
+
+<br>Eventry uses Rails as its Backend and React as its Frontend. It is built integrating  Ticketmaster's API. A series of queries to Ticketmaster's API allow the user to fetch information on a chosen city and post "add" events into the local database. When the user searches a city 20, upcoming, popular events from the city result. This feature was important to me because whether you are traveling or at home in your local city, how you spend your free time is precious and many times a reflection of who you are. What events people either decide to "like" or attend, can be understood as a indication of their character. The user can view the city's resuls, choose to see more information on each individual event and then eventually add it to their Eventry if they deem fit. THe user can also create personal events and add them directly to their Eventry. This integration was important to me, so that users would have a feed of all their activity both personal and public events. One place to go to see their events both public and private.<br>
+
+<br>Overall, I wanted the approach to be straightforward. I wanted users to be able to know what they were coming to use the application for. Many times websites start integrating a variety of features and a place you used to go for one thing now offers a series of functions. I wanted to create Eventry, the place to go to choose and see your events.<br>
 
 
-*USERSTORIES:* 
+*Installation instructions*<br>
+Npm install all dependencies<br>
+foreman start -p 3000 to start<br>
+App requires an API key from Ticketmaster API<br>
+
+
+*USERSTORIES:*<br>
+*MY USER: An every day individual looking to search, create and organize their public and private events*
 
 User logs in or registers on welcome entry page
 
@@ -38,73 +62,70 @@ Clicks login and is brought to the landing page
 
 User is brought to Eventry homepage
 
-User inputs city or zipcode of the desired location to see the upccoming events in the area
+User inputs city of the desired location to see the upccoming events in the area
 
-User populates a drop down of events
+*Add Event/City Event Results*
 
-Events show the name, date and venue with an option to add to their "events"
+User is brought to the AddEvent page where the events results of the searched city are listed
 
-User clicks an event to see more info
+User can scroll through and click on each event to see more info
+
+User also has two options on each event More Info or Add Event
+
+User clicks More Info and is brough to SingleEvent
+
+User clicks Add Event, the event is added to their Eventry and redirects to Profile
 
 *Single Event View:*
 
-User sees single event view with the name of the event
+User sees single event view with additional description of the specific event
 
+Upcoming Event in X
+Title 
 Associate event image
+Date
+Location Descriptions
 
-Description 
+User has two options: Back to X city's results or Add Event 
 
-And an option to "Add the event" to their Eventry
+User clicks back to X city's results and is shown the City Event Results
 
-User Clicks "add the event" and is brought to their perosnal Eventry page
+User clicks Add Event, event is added to their Eventry and redirects them to Profile
 
 *User Eventry Profile:* 
 
 User is brought to their user profile which showcases the events they have added
 
-Events are displayed in chronological order from soonest to farthest away
+Events are displayed in ascending order by date 
 
 User sees a short of each event with the name, date and description
 
 Can click on any of them to bring back to Single Event View 
 
-User can click on Add an Event to return back to landing page to search for a new event
 
-User can click on the month next to the events to be brought to monthly view page
+*Add Personal Event*
 
-*Monthly Eventry Profile:*
+User clicks on Add Personal Event in Nav Bar
 
-User is brought to their personal monthly eventry page
+User fills out event information with corresponding detail
 
-Page is compiled of all the events that will take place in the month click on
+User clicks Add Event 
 
-User can scroll through all the events added 
-
-User clicks logout and is brought back to Welcome Page 
+Event is added to their Eventry 
 
 
 *WIREFRAMES:*
 
 
-![imageDescrip](https://i.imgur.com/e3Tr92M.jpg)
-![imageDescrip](https://i.imgur.com/aqrqCBc.jpg)
+![imageDescrip](https://i.imgur.com/U1SBIv3.jpg?1)
+![imageDescrip](https://i.imgur.com/JIvXdUk.jpg)
+![imageDescrip](https://i.imgur.com/WhieIzq.jpg)
 
 
+Descriptions of any unsolved problems or major hurdles you had to overcome
 
-*LINK TO REPO:*
+Adding an event from the Create Personal Event page doesnt redirect to profile, it adds successfully<br>
+Displaying time correctly was a big hurdle, in some instances I used Moment to display date and others I used toLocaleTimeString, the issue with toLocaleTimeString is that converts an events time to my current local time<br>
+Input of time on the Create Event Page auto sets to 7:00pm, doesn't let you insert into localtime on event table<br>
 
-https://github.com/lillynolan/PROJECT_04
-
-
-
-
-What your MVP looks like.
-
-What your reach goals are.
-
-What technologies you intend on using.
-
-Your timeline
-
-Foreseen challenges or obstacles.
 
