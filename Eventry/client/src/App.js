@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import createHistory from 'history/createBrowserHistory';
 
 import Auth from './modules/Auth';
 import LoginForm from './components/LoginForm';
@@ -10,11 +11,14 @@ import AddEvent from './components/AddEvent';
 import CreatePersonalEvent from './components/CreatePersonalEvent';
 import UserProfile from './components/UserProfile';
 
+const history = createHistory();
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       auth: Auth.isUserAuthenticated(),
+      redirect: false
       //keeps the user logged in even when the window is closed, session
     };
     this.handleRegister = this.handleRegister.bind(this);
@@ -84,7 +88,7 @@ handleLogout() {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
       <div className="App">
       <Route exact path='/' component={Landing} />
       <Route exact path='/register' render={() => (
@@ -102,7 +106,7 @@ handleLogout() {
         <Route exact path='/home' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <AddEvent handleLogout={this.handleLogout} />
+          : <AddEvent handleLogout={this.handleLogout} history={history} add={() => this.setState({ redirect: !this.state.redirect})} />
           )}
         />
         <Route exact path='/profile' render={() => (
@@ -117,6 +121,11 @@ handleLogout() {
           : <CreatePersonalEvent handleLogout={this.handleLogout}/>
           )}
         />
+
+        {
+          this.state.redirect?
+            <Redirect to='/profile' /> : null
+        }
       </div>
       </Router>
     );
