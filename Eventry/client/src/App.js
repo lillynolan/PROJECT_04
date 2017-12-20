@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Landing from './components/Landing';
 import AddEvent from './components/AddEvent';
-import UserMonthEventList from './components/UserMonthEventList';
+import CreatePersonalEvent from './components/CreatePersonalEvent';
 import UserProfile from './components/UserProfile';
 
 class App extends Component {
@@ -111,10 +111,10 @@ handleLogout() {
           : <UserProfile handleLogout={this.handleLogout} />
           )}
         />
-        <Route exact path='/users' render={() => (
+        <Route exact path='/createevent' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <UserMonthEventList handleLogout={this.handleLogout}/>
+          : <CreatePersonalEvent handleLogout={this.handleLogout}/>
           )}
         />
       </div>
