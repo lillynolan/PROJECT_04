@@ -3,6 +3,7 @@ import Auth from '../modules/Auth';
 import Nav from './Nav'
 import Moment from 'react-moment';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router-dom';
 
 
 class AddEvent extends Component {
@@ -177,13 +178,15 @@ render() {
     <Nav handleLogout={this.props.handleLogout}/>
     <header>Welcome to Eventry</header>
       <div className="searchcontainer">
-      <h1>Search for Events by City</h1>
+      <h1>Search for an Event</h1>
         <div className="searchbar">
           <form className="input" onSubmit={this.searchEvent}>
             <input type="text" name="city" placeholder="Search a City"/>
             <button><i className="fa fa-search" type="submit" value="cities"></i></button>
           </form>
         </div>
+         <h1>or</h1>
+        <h1><Link to="/createevent">Create an Event</Link></h1>
       </div>
     </div>
     )
