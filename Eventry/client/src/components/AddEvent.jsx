@@ -5,7 +5,6 @@ import Moment from 'react-moment';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
-
 class AddEvent extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +20,11 @@ class AddEvent extends Component {
     this.singleEvent = this.singleEvent.bind(this);
     this.backtoResults = this.backtoResults.bind(this);
     this.postSingleEvent = this.postSingleEvent.bind(this)
+  }
+
+
+componentWillUnmount() {
+ this.props.add()
   }
 
 
@@ -118,10 +122,9 @@ postSingleEvent(id) {
       })
     }).then(res => res.json())
         .then(res => {
-          this.setState({
-          shouldFireRedirect: true,
-        })
-      }).catch(err => {
+          console.log(this.props)
+          this.props.add()
+        }).catch(err => {
         console.log(err);
       })
     }
@@ -162,9 +165,8 @@ postEvent(index) {
       })
     }).then(res => res.json())
         .then(res => {
-          this.setState({
-          shouldFireRedirect: true,
-        })
+          console.log(this.props)
+          this.props.add()
       }).catch(err => {
         console.log(err);
       })
