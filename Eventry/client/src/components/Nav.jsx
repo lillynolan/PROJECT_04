@@ -18,7 +18,8 @@ const Nav = (props) => {
             }
           }*/}
           <button><Link to="/profile">My Events</Link></button>
-          <button><Link to="/home">Add Event</Link></button>
+          <button><Link to="/home">Add City Event</Link></button>
+          <button><Link to="/createevent">Add Personal Event</Link></button>
           <button onClick={props.handleLogout}>Logout</button>
         </ul>
     </div>
