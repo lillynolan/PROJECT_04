@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/profile' => "users#profile"
   resources :users
   resources :events
+  root to: "root#index"
 end

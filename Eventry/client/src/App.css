@@ -152,6 +152,9 @@ background: rgba(214, 214, 214, 0.49);
 
 .eventresults {
   background: white;
+  width: 50vw;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .eventresults p {
