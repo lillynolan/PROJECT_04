@@ -13,8 +13,8 @@
 **Frontend:** HTML, JSX, React <br>
 My FrontEnd is built with React. I utilized HTML for the layout and JSX in order to insert javascript.<br>
 <br>
-**Backend:** Rails, ActiveRecord<br>
-The Backend uses Rails API with an ActiveRecord database.
+**Backend:** Rails, PostgreSQL <br>
+My backend is built in Rails with the database in Postgres.
 . <br>
 <br>
 **TICKETMASTER API:** <br>
