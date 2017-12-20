@@ -52,13 +52,13 @@ body {
 font-family: 'Fjalla One', sans-serif;
 font-weight: bold;
 text-align: center;
+background: rgba(214, 214, 214, 0.49);
 }
 
 .navcontainer {
   background: #D1E9E3;
-  display: flex;
   box-shadow: 3px 5px 5px #055A5B;
-  height: 15vh;
+  height: 10vh;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -68,6 +68,20 @@ text-align: center;
   display: flex;
   margin: auto;
   width: 66%;
+  flex-direction: row;
+  order: 2;
+  justify-content: center;
+}
+
+.navcontainer h1 {
+  font-size: 15px;
+  font-family: 'Monoton', cursive;
+  letter-spacing: .7em;
+  color: #055A5B;
+  flex-direction: row;
+  order: 1;
+  display: flex;
+  margin-left: 3px;
 }
 
 .navcontainer a, .navcontainer button {
@@ -97,6 +111,8 @@ text-align: center;
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  margin-top: 30px;
+  line-height: 3em;
 }
 
 .searchbar {
@@ -104,22 +120,19 @@ text-align: center;
   justify-content: center;
 }
 
-.searchcontainer {
-  margin-top: 30px;
-  line-height: 3em;
-}
-
 .searchcontainer h1 {
   font-size: 50px;
+  margin-top: 10px;
+  text-shadow: 4px 4px 5px white;
 }
 
-.eventresults {
+.eventresults, .singleevent {
   border: 4px solid #055A5B;
   width: 50vw;
   margin: auto;
   border-collapse: collapse;
   font-size: 20px;
-
+  border-radius: 10%;
 }
 
 .eventresults h2 {
@@ -128,29 +141,42 @@ text-align: center;
 
 .eventresults h3 {
   text-decoration: underline;
+  font-size: 25px;
+}
+
+.eventresults {
+  background: white;
+}
+
+.eventresults p {
+  font-size: 17px;
+  font-family: 'Istok Web', sans-serif;
 }
 
 .results {
-  width: 50vw;
   text-align: center;
   flex-direction: column;
   line-height: 1.5em;
-  border: 1px solid #055A5B;
-  box-sizing: border-box;
+  border-bottom: 2px solid #055A5B;
+  border-top: 2px solid #055A5B;
   overflow: scroll;
   margin-left: auto;
   margin-right: auto;
-  border-collapse: separate;
+  border-collapse: collapse;
+  padding: 10px 0px;
+  width: 90%;
 }
 
-.userresults h1 {
+.userresults h1, .userdashboard h1 {
   font-size: 30px;
   margin-bottom: 20px;
   margin-top: 10px;
+  font-family: 'Monoton', cursive;
 }
 
 .userevents {
   padding: 10px;
+  background: white;
 }
 
 img.result {
@@ -171,10 +197,36 @@ img.result {
 
 .singleevent p {
   line-height: 1.5em;
+  font-family: 'Istok Web', sans-serif;
+}
+
+.singleevent {
+  width: 50vw;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px;
+  background: white;
+}
+
+.singleevent i {
+  color: red;
+  float: right;
+}
+
+.searchevent i {
+  font-size: 30px;
+  border: none;
+}
+
+.searchbar button {
+  background: white;
+  border: 4px solid #055A5B;
 }
 
 .userresults h1 {
-  font-size: 50px;
+  font-size: 60px;
+  color: #055A5B;
+  text-shadow: 4px 4px 5px white;
 }
 
 .userevents {
@@ -182,6 +234,7 @@ img.result {
   border-collapse: collapse;
   width: 50vw;
   margin: auto;
+  border-radius: 10%;
 }
 
 .userevents h2 {
@@ -216,23 +269,12 @@ font-size: 30px;
   font-size: 30px;
 }
 
-.singleevent i {
-  color: red;
-  float: right;
+.userevents span {
+  float: left;
+  font-size: 8px;
+  margin-right: -70px;
+  margin-left: 20px;
 }
-
-
-.searchevent i {
-  font-size: 30px;
-  border: none;
-}
-
-.singleevent {
-  width: 50vw;
-  margin: auto;
-  margin-top: 10px;
-}
-
 
 .loginregister h1, .loginform h1, .registerform h1 {
   font-size: 90px;
@@ -269,6 +311,9 @@ font-size: 30px;
 
 .registerform input, .loginform input {
   display: flex;
+}
+
+.registerform input, .loginform input, .searchbar input {
   justify-content: center;
   margin: auto;
   text-align: center;
@@ -279,7 +324,14 @@ font-size: 30px;
   text-transform: uppercase;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.searchevent header {
+  font-size: 90px;
+  color: #055A5B;
+  text-shadow: 5px 5px 5px solid black;
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  padding: 30px 0px;
 }
+
+
 
