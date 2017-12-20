@@ -23,10 +23,6 @@ class AddEvent extends Component {
   }
 
 
-componentWillUnmount() {
- this.props.add()
-  }
-
 
 searchEvent (e) {
   e.preventDefault();

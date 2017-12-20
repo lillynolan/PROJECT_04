@@ -118,7 +118,7 @@ handleLogout() {
         <Route exact path='/createevent' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <CreatePersonalEvent handleLogout={this.handleLogout}/>
+          : <CreatePersonalEvent handleLogout={this.handleLogout} history={history} add={() => this.setState({ redirect: !this.state.redirect})}/>
           )}
         />
 

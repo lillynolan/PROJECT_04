@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Auth from '../modules/Auth';
 import Nav from './Nav';
 
 class CreatePersonalEvent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       url: '',
@@ -21,6 +20,10 @@ class CreatePersonalEvent extends Component {
       genre: '',
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+componentWillUnmount() {
+ this.props.add()
   }
 
 handleInputChange(e) {
@@ -44,7 +47,8 @@ postPersonalEvent(e, data) {
     })
   }).then(res => res.json())
     .then(res => {
-    console.log(res);
+    console.log(this.props);
+    this.props.add();
   }).catch(err => console.log(err))
 }
 
