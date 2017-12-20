@@ -185,8 +185,8 @@ render() {
             <button><i className="fa fa-search" type="submit" value="cities"></i></button>
           </form>
         </div>
-         <h1>or</h1>
-        <h1><Link to="/createevent">Create an Event</Link></h1>
+    {/*     <h1>or</h1>
+        <h1><Link to="/createevent">Create an Event</Link></h1>*/}
       </div>
     </div>
     )

@@ -145,7 +145,7 @@ render() {
               <h4 className="result">{this.state.singleUserEvent.name}</h4>
               <img className="result" src={this.state.singleUserEvent.url}/>
               <h4 className="result"><Moment format="MMMM DD YYYY">{this.state.singleUserEvent.date}</Moment></h4>
-              <p className="result">Where: {this.state.singleUserEvent.venue}</p>
+              <p className="result">{this.state.singleUserEvent.venue}</p>
               <p className="result">{this.state.singleUserEvent.address}</p>
               <p className="result">{this.state.singleUserEvent.state} {this.state.singleUserEvent.stateCode}</p>
               <p className="result">{this.state.singleUserEvent.classification}</p>
@@ -165,6 +165,7 @@ render() {
           <h1>{user.firstname} Events</h1>
           </div>)}
         )}*/}
+        <div class="userresultscontainer">
           {this.state.myEventList.map((event, index) => {
             let time = new Date (event.localtime)
             let create = new Date (event.created_at)
@@ -173,10 +174,10 @@ render() {
                 <div className="usereventsresults" onClick={() => this.singleUserEvent(event.id)}>
                 <span className="result">Added on: {create.toLocaleDateString()}</span>
                   <h2 className="result">{event.city}</h2>
-                  <h3 className="result">{event.name}</h3>
-                  <img className="result" src={event.url}/>
-                  <p className="result">{event.venue}</p>
                   <p className="result"><Moment format="MMMM DD YYYY">{event.date}</Moment></p>
+                  <img className="result" src={event.url}/>
+                  <h3 className="result">{event.name}</h3>
+                  <p className="result">{event.venue}</p>
                   <p className="result">at {time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
                  {/* referenced for converting time and only showing seconds, https://stackoverflow.com/questions/17913681/how-do-i-use-tolocaletimestring-without-displaying-seconds/20430558*/}
                   <p className="result">{event.city} {event.stateCode}</p>
@@ -189,6 +190,7 @@ render() {
             </div>
         )}
       )}
+          </div>
           </div>
           </div>
           )}
