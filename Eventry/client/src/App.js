@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import Moment from 'react-moment';
 
 import Auth from './modules/Auth';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Landing from './components/Landing';
 import AddEvent from './components/AddEvent';
+import UserMonthEventList from './components/UserMonthEventList';
 import UserProfile from './components/UserProfile';
 
 class App extends Component {
@@ -102,13 +102,19 @@ handleLogout() {
         <Route exact path='/home' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <AddEvent handleLogout={this.handleLogout}/>
+          : <AddEvent handleLogout={this.handleLogout} />
           )}
         />
         <Route exact path='/profile' render={() => (
           !this.state.auth
           ? <Redirect to='/' />
-          : <UserProfile handleLogout={this.handleLogout}/>
+          : <UserProfile handleLogout={this.handleLogout} />
+          )}
+        />
+        <Route exact path='/users' render={() => (
+          !this.state.auth
+          ? <Redirect to='/' />
+          : <UserMonthEventList handleLogout={this.handleLogout}/>
           )}
         />
       </div>

@@ -75,7 +75,8 @@ searchEvent (e) {
 singleEvent(id) {
   fetch(`https://app.ticketmaster.com/discovery/v2/events.json?id=${id}&apikey=5OXqsHRBAmlbfo0yWC7GGGbLA4ZfqJio`, {
     method: 'GET',
-    headers: {},
+    headers: {
+    }
   })
   .then(res => res.json())
   .then(res => {
@@ -173,13 +174,14 @@ render() {
   if (!this.state.dataLoaded && !this.state.singleLoaded) {
   return (
     <div className="searchevent">
-    <Nav handleLogout={this.props.handleLogout} />
+    <Nav handleLogout={this.props.handleLogout}/>
+    <header>Welcome to Eventry</header>
       <div className="searchcontainer">
-      <h1>Search Events by City</h1>
+      <h1>Search for Events by City</h1>
         <div className="searchbar">
           <form className="input" onSubmit={this.searchEvent}>
             <input type="text" name="city" placeholder="Search a City"/>
-            <button><i class="fa fa-search" type="submit" value="cities"></i></button>
+            <button><i className="fa fa-search" type="submit" value="cities"></i></button>
           </form>
         </div>
       </div>
@@ -189,13 +191,13 @@ render() {
       return (
         <div className="singleeventpage">
           <Nav handleLogout={this.props.handleLogout} />
-            <div className="singleevent">
-            <button><i class="fa fa-close" onClick={this.backtoResults} value="close"></i></button>
+            <div className="singleevent" onClick={this.backtoResults}>
+            <button><i className="fa fa-close" onClick={this.backtoResults} value="close"></i></button>
               <h3 className="result">Upcoming event in {this.state.singleEvent._embedded.venues[0].city.name}</h3>
-              <h4 clas sName="result">{this.state.singleEvent.name}</h4>
+              <h4 className="result">{this.state.singleEvent.name}</h4>
               <img className="result" src={this.state.singleEvent.images[0].url}/>
               <h4 className="result"><Moment format="MMMM DD YYYY, h:mm a">{this.state.singleEvent.dates.start.localDate + 'T' + this.state.singleEvent.dates.start.localTime}</Moment></h4>
-              <p className="result">Where: {this.state.singleEvent._embedded.venues[0].name}</p>
+              <p className="result">{this.state.singleEvent._embedded.venues[0].name}</p>
               <p className="result">{this.state.singleEvent._embedded.venues[0].address.line1}</p>
               <p className="result">{this.state.singleEvent._embedded.venues[0].state.name} {this.state.singleEvent._embedded.venues[0].state.stateCode}</p>
               <p className="result">{this.state.singleEvent.classifications[0].segment.name}</p>
@@ -223,13 +225,16 @@ render() {
               {this.state.searchedEvents.map((event, index) => {
               return (
               <div className="results" key={index}>
-                <h3 className="result">{event.name}</h3>
-                <p className="result">{event.venue}</p>
-                <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.localtime}</Moment></p>
-                <p className="result">{event.city} {event.stateCode}</p>
-                <p className="result">{event.classification}: {event.genre}</p>
-                <button className="resultbutton" name="id" onClick={() => this.singleEvent(event.id)}>(<FontAwesome name='info'/>)More Info</button>
-                <button className="resultbutton" onClick={() => this.postEvent(index)}>(+)Add Event</button>
+                <div className="resultscontainer" onClick={() => this.singleEvent(event.id)}>
+                    <h3 className="result">{event.name}</h3>
+                    <p className="result">{event.venue}</p>
+                    <p className="result"><Moment format="MMMM DD YYYY, h:mm a">{event.date + 'T' + event.localtime}</Moment></p>
+                    <p className="result">{event.classification}: {event.genre}</p>
+                </div>
+                  <div className="resultbutton">
+                  <button className="resultbutton" name="id" onClick={() => this.singleEvent(event.id)}>(<FontAwesome name='info'/>)More Info</button>
+                  <button className="resultbutton" onClick={() => this.postEvent(index)}>(+)Add Event</button>
+                </div>
                 {/*<img className="result" src={event.url}/>*/}
               </div>
             )}
