@@ -158,7 +158,7 @@ render() {
     <div className="usercontainer">
       <Nav handleLogout={this.props.handleLogout} getAllUsers={this.props.getAllUsers} userList={this.props.userList}/>
       <div className="userresults">
-        <h1>My Events</h1>
+        <h1>My Eventry</h1>
    {/*   {this.props.userList.map((user, index) => {
         return(
           <div className="user" key={user.id}>
